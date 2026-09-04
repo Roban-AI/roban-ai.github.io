@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Roban AI official GitHub organization." />
+    <meta name="theme-color" content="#f7f7f4" />
+    <title>Roban AI</title>
+    <link rel="icon" href="assets/roban-ai.png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Roban AI home">
+        <img src="assets/roban-ai.png" alt="" width="36" height="36" />
+        <span>Roban AI</span>
+      </a>
+      <a class="github-link" href="https://github.com/Roban-AI">GitHub</a>
+    </header>
+
+    <main>
+      <section class="hero">
+        <img class="hero-mark" src="assets/roban-ai.png" alt="Roban AI" />
+        <div class="hero-copy">
+          <p class="eyebrow">Official organization</p>
+          <h1>Roban AI</h1>
+          <p class="intro">Our official home for open-source projects and engineering work.</p>
+          <a class="primary-link" href="https://github.com/Roban-AI">
+            Explore our GitHub
+            <span aria-hidden="true">&#8599;</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="status" aria-labelledby="status-title">
+        <p class="section-number">01</p>
+        <div>
+          <h2 id="status-title">More is taking shape.</h2>
+          <p>This site will grow alongside our public work.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>&copy; <span id="year"></span> Roban AI</span>
+      <a href="https://github.com/Roban-AI">github.com/Roban-AI</a>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
