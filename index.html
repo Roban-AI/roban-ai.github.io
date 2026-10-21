@@ -3,51 +3,237 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Roban AI official GitHub organization." />
-    <meta name="theme-color" content="#f7f7f4" />
+    <meta name="description" content="Roban AI — building frontier artificial intelligence." />
+    <meta name="theme-color" content="#0d0d10" />
     <title>Roban AI</title>
-    <link rel="icon" href="assets/roban-ai.png" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" type="image/png" href="assets/logo-mark.png" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+    <link rel="stylesheet" href="styles.css?v=dark-2" />
   </head>
   <body>
+    <div class="ambient ambient-a" aria-hidden="true"></div>
+    <div class="ambient ambient-b" aria-hidden="true"></div>
+    <canvas id="starfield" aria-hidden="true"></canvas>
+
     <header class="site-header">
-      <a class="brand" href="/" aria-label="Roban AI home">
-        <img src="assets/roban-ai.png" alt="" width="36" height="36" />
-        <span>Roban AI</span>
-      </a>
-      <a class="github-link" href="https://github.com/Roban-AI">GitHub</a>
+      <div class="shell header-inner">
+        <a class="brand" href="/" aria-label="Roban AI home">
+          <img class="brand-mark" src="assets/logo-mark.png" alt="" width="30" height="30" />
+          <span class="brand-name">Roban&nbsp;<b>AI</b></span>
+        </a>
+
+        <nav class="header-nav" aria-label="Primary">
+          <div class="menu" data-menu>
+            <button class="menu-trigger" type="button" aria-expanded="false" aria-controls="explore-menu">
+              <span>Explore</span>
+              <svg class="menu-caret" viewBox="0 0 10 6" width="9" height="6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="menu-panel" id="explore-menu" role="menu" hidden>
+              <a class="menu-item" role="menuitem" href="#work">Open source</a>
+              <a class="menu-item menu-item-external" role="menuitem" href="https://github.com/Roban-AI" target="_blank" rel="noopener">GitHub&nbsp;<span aria-hidden="true">&#8599;</span></a>
+            </div>
+          </div>
+          <a class="btn btn-ghost btn-sm" href="https://github.com/Roban-AI" target="_blank" rel="noopener">
+            GitHub
+            <span aria-hidden="true">&#8599;</span>
+          </a>
+        </nav>
+      </div>
     </header>
 
     <main>
-      <section class="hero">
-        <img class="hero-mark" src="assets/roban-ai.png" alt="Roban AI" />
+      <section class="hero shell" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <p class="eyebrow">Official organization</p>
-          <h1>Roban AI</h1>
-          <p class="intro">Our official home for open-source projects and engineering work.</p>
-          <a class="primary-link" href="https://github.com/Roban-AI">
-            Explore our GitHub
-            <span aria-hidden="true">&#8599;</span>
-          </a>
+          <p class="status-pill reveal" style="--i:0"><span class="dot" aria-hidden="true"></span>Pre-launch</p>
+          <h1 id="hero-title" class="reveal" style="--i:1">Building frontier <em>intelligence.</em></h1>
+          <div class="hero-actions reveal" style="--i:2">
+            <a class="btn btn-primary" href="https://github.com/Roban-AI" target="_blank" rel="noopener">
+              GitHub
+              <span aria-hidden="true">&#8599;</span>
+            </a>
+            <a class="btn btn-ghost" href="#work">Open source <span aria-hidden="true">&darr;</span></a>
+          </div>
+        </div>
+        <div class="hero-visual reveal" style="--i:2" aria-hidden="true">
+          <div class="orb-wrap">
+            <div class="orb"></div>
+            <div class="orb-ring"></div>
+          </div>
+          <div class="card-wrap">
+            <div class="hero-card">
+              <img src="assets/logo-lockup-red.png" alt="" width="726" height="284" />
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="status" aria-labelledby="status-title">
-        <p class="section-number">01</p>
-        <div>
-          <h2 id="status-title">More is taking shape.</h2>
-          <p>This site will grow alongside our public work.</p>
-        </div>
+      <section class="section shell" id="work" aria-labelledby="work-title">
+        <header class="section-head" data-reveal>
+          <p class="micro-label"><span class="dot" aria-hidden="true"></span>Work</p>
+          <h2 id="work-title">Open source</h2>
+        </header>
+        <ul class="work-list">
+          <li class="work-row" data-reveal>
+            <p class="work-name">First public releases are in preparation.</p>
+            <a class="work-link" href="https://github.com/Roban-AI?tab=repositories" target="_blank" rel="noopener">Repositories <span aria-hidden="true">&#8599;</span></a>
+          </li>
+        </ul>
       </section>
     </main>
 
-    <footer>
-      <span>&copy; <span id="year"></span> Roban AI</span>
-      <a href="https://github.com/Roban-AI">github.com/Roban-AI</a>
+    <footer class="site-footer">
+      <div class="shell footer-inner">
+        <a class="footer-brand" href="/">
+          <img src="assets/logo-mark.png" alt="" width="20" height="20" />
+          <span>&copy; <span id="year">2026</span> Roban AI</span>
+        </a>
+        <a class="footer-link" href="https://github.com/Roban-AI" target="_blank" rel="noopener">github.com/Roban-AI <span aria-hidden="true">&#8599;</span></a>
+      </div>
     </footer>
 
     <script>
+      // Year
       document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Dropdown menu (accessible: click, Escape, outside close)
+      (function () {
+        var menu = document.querySelector("[data-menu]");
+        var trigger = menu.querySelector(".menu-trigger");
+        var panel = menu.querySelector(".menu-panel");
+
+        function open() {
+          panel.hidden = false;
+          trigger.setAttribute("aria-expanded", "true");
+          requestAnimationFrame(function () { panel.classList.add("open"); });
+        }
+        function close() {
+          panel.classList.remove("open");
+          trigger.setAttribute("aria-expanded", "false");
+          setTimeout(function () { panel.hidden = true; }, 140);
+        }
+
+        trigger.addEventListener("click", function (e) {
+          e.stopPropagation();
+          trigger.getAttribute("aria-expanded") === "true" ? close() : open();
+        });
+        panel.addEventListener("click", function (e) { e.stopPropagation(); });
+        document.addEventListener("click", function () {
+          if (trigger.getAttribute("aria-expanded") === "true") close();
+        });
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && trigger.getAttribute("aria-expanded") === "true") {
+            close();
+            trigger.focus();
+          }
+        });
+      })();
+
+      // Starfield: drifting, twinkling stars with occasional meteors
+      (function () {
+        var canvas = document.getElementById("starfield");
+        if (!canvas) return;
+        var ctx = canvas.getContext("2d");
+        var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var DPR = Math.min(window.devicePixelRatio || 1, 2);
+        var W = 0, H = 0, stars = [], meteors = [], nextMeteor = 1200;
+
+        function seed() {
+          stars = [];
+          var n = Math.min(170, Math.round(W * H / 13000));
+          for (var i = 0; i < n; i++) {
+            stars.push({
+              x: Math.random() * W, y: Math.random() * H,
+              r: 0.5 + Math.random() * 1.1,
+              p: Math.random() * Math.PI * 2,
+              s: 0.4 + Math.random() * 1.2,
+              red: Math.random() < 0.1
+            });
+          }
+        }
+        function resize() {
+          W = window.innerWidth; H = window.innerHeight;
+          canvas.width = Math.round(W * DPR); canvas.height = Math.round(H * DPR);
+          canvas.style.width = W + "px"; canvas.style.height = H + "px";
+          ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+          seed();
+        }
+        function drawStar(s, t) {
+          var tw = 0.55 + 0.45 * Math.sin(t / 1000 * s.s + s.p);
+          var a = (s.red ? 0.48 : 0.44) * tw;
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, s.r, 0, 6.2832);
+          ctx.fillStyle = (s.red ? "rgba(255,96,96," : "rgba(255,255,255,") + a.toFixed(3) + ")";
+          ctx.fill();
+        }
+        function spawnMeteor(t) {
+          meteors.push({
+            x: W * (0.25 + Math.random() * 0.65), y: H * (0.02 + Math.random() * 0.25),
+            vx: -(5.5 + Math.random() * 3), vy: 2.2 + Math.random() * 1.2,
+            len: 90 + Math.random() * 70, born: t
+          });
+          nextMeteor = t + 4500 + Math.random() * 6000;
+        }
+        function frame(t) {
+          ctx.clearRect(0, 0, W, H);
+          for (var i = 0; i < stars.length; i++) {
+            var s = stars[i];
+            s.y -= 0.006 * s.s;
+            if (s.y < -2) { s.y = H + 2; s.x = Math.random() * W; }
+            drawStar(s, t);
+          }
+          if (t > nextMeteor) spawnMeteor(t);
+          for (var j = meteors.length - 1; j >= 0; j--) {
+            var m = meteors[j], age = (t - m.born) / 1100;
+            if (age >= 1) { meteors.splice(j, 1); continue; }
+            m.x += m.vx; m.y += m.vy;
+            var fade = Math.sin(Math.PI * age);
+            var mag = Math.hypot(m.vx, m.vy), nx = m.vx / mag, ny = m.vy / mag;
+            var tx = m.x - nx * m.len, ty = m.y - ny * m.len;
+            var grad = ctx.createLinearGradient(m.x, m.y, tx, ty);
+            grad.addColorStop(0, "rgba(255,255,255," + (0.55 * fade).toFixed(3) + ")");
+            grad.addColorStop(1, "rgba(255,255,255,0)");
+            ctx.strokeStyle = grad; ctx.lineWidth = 1.1;
+            ctx.beginPath(); ctx.moveTo(m.x, m.y); ctx.lineTo(tx, ty); ctx.stroke();
+          }
+          if (!reduce) requestAnimationFrame(frame);
+        }
+        window.addEventListener("resize", resize);
+        resize();
+        if (reduce) { for (var k = 0; k < stars.length; k++) drawStar(stars[k], 0); }
+        else requestAnimationFrame(frame);
+      })();
+
+      // Hero parallax (desktop pointers only)
+      (function () {
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        if (!window.matchMedia("(pointer: fine)").matches) return;
+        var hero = document.querySelector(".hero");
+        if (!hero) return;
+        hero.addEventListener("mousemove", function (e) {
+          var r = hero.getBoundingClientRect();
+          hero.style.setProperty("--px", ((e.clientX - r.left) / r.width - 0.5).toFixed(3));
+          hero.style.setProperty("--py", ((e.clientY - r.top) / r.height - 0.5).toFixed(3));
+        });
+        hero.addEventListener("mouseleave", function () {
+          hero.style.setProperty("--px", "0");
+          hero.style.setProperty("--py", "0");
+        });
+      })();
+
+      // Scroll reveal
+      (function () {
+        var els = document.querySelectorAll("[data-reveal]");
+        if (!("IntersectionObserver" in window)) {
+          for (var i = 0; i < els.length; i++) els[i].classList.add("in-view");
+          return;
+        }
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            if (en.isIntersecting) { en.target.classList.add("in-view"); io.unobserve(en.target); }
+          });
+        }, { threshold: 0.15 });
+        els.forEach(function (el) { io.observe(el); });
+      })();
     </script>
   </body>
 </html>
