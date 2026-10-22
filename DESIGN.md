@@ -133,15 +133,31 @@ Rules:
 - Work rows: `name / link` grid inside hairline top and bottom borders.
   Link color goes `--red-bright` on hover.
 
-## 6. Motion
+## 6. Bilingual content (EN / 中文)
+
+Both languages live in the same document; switching never navigates.
+
+- Every translatable string is a pair of spans: `<span data-lang="en">…</span><span data-lang="zh">…</span>`.
+  One is hidden via `html.lang-en [data-lang="zh"]{display:none!important}` and the inverse rule.
+- The switcher is a 64×30 px pill in the header (`.lang-toggle`) with "EN / 中" labels
+  and a light knob that slides 30 px (`transform`, 280 ms) — active label sits on the knob in dark text.
+- State lives on `<html>`: class `lang-en` / `lang-zh` plus the `lang` attribute (`en` / `zh-CN`)
+  for screen readers. The choice persists in `localStorage` (`roban-lang`); default is English.
+- Markup ships with `class="lang-en"`, so the page is English even before JS runs.
+- Glyphs shared by both languages (GitHub, arrows, the wordmark) stay outside the
+  `data-lang` spans so nothing shifts between languages; the font stack keeps Latin
+  fonts ahead of the CJK fallbacks (`PingFang SC`, `Microsoft YaHei`, `Noto Sans SC`).
+- Uppercase micro-labels keep their letter-spacing in Chinese — the airy tracking is intentional.
+
+## 7. Motion
 
 - Easing: `cubic-bezier(0.32, 0.72, 0, 1)` for transforms; plain ease for colors.
 - UI durations: 180 ms (color/border), 320 ms (transform/shadow),
-  140 ms close delay on menus.
+  140 ms close delay on menus, 280 ms for the language knob.
 - Ambient durations: 7–24 s (see §4).
 - `prefers-reduced-motion` disables everything in §4 and shortens UI transitions.
 
-## 7. Accessibility
+## 8. Accessibility
 
 - Text contrast: `--ink` on `--bg` ≈ 17:1; `--ink-dim` ≈ 10:1; `--muted` ≈ 5:1;
   white on `--red` ≥ 4.5:1. Never set `--red` text on dark — use `--red-bright`.
@@ -149,16 +165,16 @@ Rules:
 - Decorative layers (`ambient`, `#starfield`, `.hero-visual`) are `aria-hidden`.
 - Touch targets ≥ 38 px.
 
-## 8. File map
+## 9. File map
 
 ```
-index.html     markup + starfield, parallax, dropdown, reveal scripts
+index.html     markup + starfield, parallax, dropdown, reveal, language scripts
 styles.css     all styling (tokens in :root)
 assets/        logo-mark (transparent) / logo-lockup / logo-lockup-red / apple-touch-icon
 DESIGN.md      this document
 ```
 
-## 9. Do / Don't
+## 10. Do / Don't
 
 **Do** — keep one idea per screen; let the dark field do the talking; spend red
 on one signal per view (button, dot, or word); reuse the pill; keep copy minimal.

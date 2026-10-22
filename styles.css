@@ -50,13 +50,68 @@ body {
   min-height: 100vh;
   background: var(--bg);
   color: var(--ink);
-  font-family: "Inter", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: "Inter", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
   font-size: 16px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: clip;
 }
+
+/* ---- Language ---- */
+
+html.lang-en [data-lang="zh"] { display: none !important; }
+html.lang-zh [data-lang="en"] { display: none !important; }
+
+.lang-toggle {
+  position: relative;
+  width: 64px;
+  height: 30px;
+  padding: 3px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.03);
+  display: flex;
+  align-items: stretch;
+  cursor: pointer;
+  transition: border-color var(--t-fast) ease;
+}
+
+.lang-toggle:hover { border-color: rgba(255, 255, 255, 0.32); }
+
+.lang-toggle .knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 28px;
+  height: 22px;
+  border-radius: var(--radius-pill);
+  background: #f0f0f2;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
+  transition: transform 0.28s var(--ease);
+  z-index: 1;
+  pointer-events: none;
+}
+
+html.lang-zh .lang-toggle .knob { transform: translateX(30px); }
+
+.lg-opt {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  color: var(--muted);
+  z-index: 2;
+  pointer-events: none;
+  transition: color var(--t-fast) ease;
+}
+
+html.lang-en .lg-en { color: #16161a; }
+html.lang-zh .lg-zh { color: #16161a; }
 
 /* Film grain over everything; purely decorative */
 body::after {
@@ -640,6 +695,8 @@ main, .site-footer { position: relative; z-index: 1; }
 
   .brand-name { font-size: 16px; }
 
+  .header-nav .btn-sm { display: none; }
+
   .hero h1 { font-size: clamp(38px, 11vw, 46px); }
 
   .hero-card { padding: 16px 18px; }
@@ -673,6 +730,8 @@ main, .site-footer { position: relative; z-index: 1; }
   }
 
   .orb-wrap, .card-wrap { transform: none; transition: none; }
+
+  .lang-toggle .knob { transition: none; }
 
   .menu-panel, .menu-caret, .btn { transition: none; }
 }

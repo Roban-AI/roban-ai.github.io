@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="lang-en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,7 +8,7 @@
     <title>Roban AI</title>
     <link rel="icon" type="image/png" href="assets/logo-mark.png" />
     <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
-    <link rel="stylesheet" href="styles.css?v=dark-2" />
+    <link rel="stylesheet" href="styles.css?v=dark-3" />
   </head>
   <body>
     <div class="ambient ambient-a" aria-hidden="true"></div>
@@ -25,11 +25,11 @@
         <nav class="header-nav" aria-label="Primary">
           <div class="menu" data-menu>
             <button class="menu-trigger" type="button" aria-expanded="false" aria-controls="explore-menu">
-              <span>Explore</span>
+              <span><span data-lang="en">Explore</span><span data-lang="zh">探索</span></span>
               <svg class="menu-caret" viewBox="0 0 10 6" width="9" height="6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
             <div class="menu-panel" id="explore-menu" role="menu" hidden>
-              <a class="menu-item" role="menuitem" href="#work">Open source</a>
+              <a class="menu-item" role="menuitem" href="#work"><span data-lang="en">Open source</span><span data-lang="zh">开源</span></a>
               <a class="menu-item menu-item-external" role="menuitem" href="https://github.com/Roban-AI" target="_blank" rel="noopener">GitHub&nbsp;<span aria-hidden="true">&#8599;</span></a>
             </div>
           </div>
@@ -37,6 +37,11 @@
             GitHub
             <span aria-hidden="true">&#8599;</span>
           </a>
+          <button class="lang-toggle" type="button" id="lang-toggle" aria-label="Switch language / 切换语言">
+            <span class="lg-opt lg-en" aria-hidden="true">EN</span>
+            <span class="lg-opt lg-zh" aria-hidden="true">中</span>
+            <span class="knob" aria-hidden="true"></span>
+          </button>
         </nav>
       </div>
     </header>
@@ -44,14 +49,14 @@
     <main>
       <section class="hero shell" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <p class="status-pill reveal" style="--i:0"><span class="dot" aria-hidden="true"></span>Pre-launch</p>
-          <h1 id="hero-title" class="reveal" style="--i:1">Building frontier <em>intelligence.</em></h1>
+          <p class="status-pill reveal" style="--i:0"><span class="dot" aria-hidden="true"></span><span data-lang="en">Pre-launch</span><span data-lang="zh">筹备中</span></p>
+          <h1 id="hero-title" class="reveal" style="--i:1"><span data-lang="en">Building frontier <em>intelligence.</em></span><span data-lang="zh">构建前沿<em>智能。</em></span></h1>
           <div class="hero-actions reveal" style="--i:2">
             <a class="btn btn-primary" href="https://github.com/Roban-AI" target="_blank" rel="noopener">
               GitHub
               <span aria-hidden="true">&#8599;</span>
             </a>
-            <a class="btn btn-ghost" href="#work">Open source <span aria-hidden="true">&darr;</span></a>
+            <a class="btn btn-ghost" href="#work"><span data-lang="en">Open source</span><span data-lang="zh">开源</span> <span aria-hidden="true">&darr;</span></a>
           </div>
         </div>
         <div class="hero-visual reveal" style="--i:2" aria-hidden="true">
@@ -69,13 +74,13 @@
 
       <section class="section shell" id="work" aria-labelledby="work-title">
         <header class="section-head" data-reveal>
-          <p class="micro-label"><span class="dot" aria-hidden="true"></span>Work</p>
-          <h2 id="work-title">Open source</h2>
+          <p class="micro-label"><span class="dot" aria-hidden="true"></span><span data-lang="en">Work</span><span data-lang="zh">工作</span></p>
+          <h2 id="work-title"><span data-lang="en">Open source</span><span data-lang="zh">开源</span></h2>
         </header>
         <ul class="work-list">
           <li class="work-row" data-reveal>
-            <p class="work-name">First public releases are in preparation.</p>
-            <a class="work-link" href="https://github.com/Roban-AI?tab=repositories" target="_blank" rel="noopener">Repositories <span aria-hidden="true">&#8599;</span></a>
+            <p class="work-name"><span data-lang="en">First public releases are in preparation.</span><span data-lang="zh">首批公开发布正在筹备中。</span></p>
+            <a class="work-link" href="https://github.com/Roban-AI?tab=repositories" target="_blank" rel="noopener"><span data-lang="en">Repositories</span><span data-lang="zh">代码仓库</span> <span aria-hidden="true">&#8599;</span></a>
           </li>
         </ul>
       </section>
@@ -92,6 +97,23 @@
     </footer>
 
     <script>
+      // Language: paired [data-lang] spans in one document; EN default.
+      // No navigation — the toggle only swaps classes on <html>.
+      function applyLang(l) {
+        document.documentElement.classList.toggle("lang-zh", l === "zh");
+        document.documentElement.classList.toggle("lang-en", l !== "zh");
+        document.documentElement.setAttribute("lang", l === "zh" ? "zh-CN" : "en");
+        try { localStorage.setItem("roban-lang", l); } catch (e) {}
+      }
+      (function () {
+        var saved = null;
+        try { saved = localStorage.getItem("roban-lang"); } catch (e) {}
+        applyLang(saved === "zh" ? "zh" : "en");
+        document.getElementById("lang-toggle").addEventListener("click", function () {
+          applyLang(document.documentElement.classList.contains("lang-zh") ? "en" : "zh");
+        });
+      })();
+
       // Year
       document.getElementById("year").textContent = new Date().getFullYear();
 
