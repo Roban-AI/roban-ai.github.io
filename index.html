@@ -8,7 +8,7 @@
     <title>Roban AI</title>
     <link rel="icon" type="image/png" href="assets/logo-mark.png" />
     <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
-    <link rel="stylesheet" href="styles.css?v=dark-3" />
+    <link rel="stylesheet" href="styles.css?v=dark-4" />
   </head>
   <body>
     <div class="ambient ambient-a" aria-hidden="true"></div>
@@ -30,6 +30,9 @@
             </button>
             <div class="menu-panel" id="explore-menu" role="menu" hidden>
               <a class="menu-item" role="menuitem" href="#work"><span data-lang="en">Open source</span><span data-lang="zh">开源</span></a>
+              <a class="menu-item" role="menuitem" href="#contact"><span data-lang="en">Contact</span><span data-lang="zh">联系</span></a>
+              <a class="menu-item menu-item-external" role="menuitem" href="https://huggingface.co/Roban-AI" target="_blank" rel="noopener">Hugging Face&nbsp;<span aria-hidden="true">&#8599;</span></a>
+              <a class="menu-item menu-item-external" role="menuitem" href="https://modelscope.cn/organization/Roban" target="_blank" rel="noopener">ModelScope&nbsp;<span aria-hidden="true">&#8599;</span></a>
               <a class="menu-item menu-item-external" role="menuitem" href="https://github.com/Roban-AI" target="_blank" rel="noopener">GitHub&nbsp;<span aria-hidden="true">&#8599;</span></a>
             </div>
           </div>
@@ -80,9 +83,30 @@
         <ul class="work-list">
           <li class="work-row" data-reveal>
             <p class="work-name"><span data-lang="en">First public releases are in preparation.</span><span data-lang="zh">首批公开发布正在筹备中。</span></p>
-            <a class="work-link" href="https://github.com/Roban-AI?tab=repositories" target="_blank" rel="noopener"><span data-lang="en">Repositories</span><span data-lang="zh">代码仓库</span> <span aria-hidden="true">&#8599;</span></a>
+            <div class="work-links">
+              <a class="work-link" href="https://github.com/Roban-AI?tab=repositories" target="_blank" rel="noopener"><span data-lang="en">Repositories</span><span data-lang="zh">代码仓库</span> <span aria-hidden="true">&#8599;</span></a>
+              <a class="work-link" href="https://huggingface.co/Roban-AI" target="_blank" rel="noopener">Hugging Face <span aria-hidden="true">&#8599;</span></a>
+              <a class="work-link" href="https://modelscope.cn/organization/Roban" target="_blank" rel="noopener">ModelScope <span aria-hidden="true">&#8599;</span></a>
+            </div>
           </li>
         </ul>
+      </section>
+
+      <section class="section shell" id="contact" aria-labelledby="contact-title">
+        <header class="section-head" data-reveal>
+          <p class="micro-label"><span class="dot" aria-hidden="true"></span><span data-lang="en">Contact</span><span data-lang="zh">联系</span></p>
+          <h2 id="contact-title"><span data-lang="en">Get in touch</span><span data-lang="zh">联系我们</span></h2>
+        </header>
+        <div class="contact-grid">
+          <div class="contact-mail-block" data-reveal>
+            <p class="contact-label"><span data-lang="en">Email</span><span data-lang="zh">邮箱</span></p>
+            <a class="contact-mail" href="mailto:huangshiyu@roban.ai">huangshiyu@roban.ai</a>
+          </div>
+          <figure class="contact-qr" data-reveal>
+            <img src="assets/wechat-qr.jpg" alt="WeChat official account QR code" width="430" height="430" data-alt-en="WeChat official account QR code" data-alt-zh="微信公众号二维码" />
+            <figcaption><span data-lang="en">WeChat</span><span data-lang="zh">微信公众号</span></figcaption>
+          </figure>
+        </div>
       </section>
     </main>
 
@@ -92,7 +116,11 @@
           <img src="assets/logo-mark.png" alt="" width="20" height="20" />
           <span>&copy; <span id="year">2026</span> Roban AI</span>
         </a>
-        <a class="footer-link" href="https://github.com/Roban-AI" target="_blank" rel="noopener">github.com/Roban-AI <span aria-hidden="true">&#8599;</span></a>
+        <div class="footer-links">
+          <a class="footer-link" href="https://github.com/Roban-AI" target="_blank" rel="noopener">GitHub <span aria-hidden="true">&#8599;</span></a>
+          <a class="footer-link" href="https://huggingface.co/Roban-AI" target="_blank" rel="noopener">Hugging Face <span aria-hidden="true">&#8599;</span></a>
+          <a class="footer-link" href="https://modelscope.cn/organization/Roban" target="_blank" rel="noopener">ModelScope <span aria-hidden="true">&#8599;</span></a>
+        </div>
       </div>
     </footer>
 
@@ -103,6 +131,10 @@
         document.documentElement.classList.toggle("lang-zh", l === "zh");
         document.documentElement.classList.toggle("lang-en", l !== "zh");
         document.documentElement.setAttribute("lang", l === "zh" ? "zh-CN" : "en");
+        var imgs = document.querySelectorAll("[data-alt-en]");
+        for (var i = 0; i < imgs.length; i++) {
+          imgs[i].setAttribute("alt", l === "zh" ? imgs[i].getAttribute("data-alt-zh") : imgs[i].getAttribute("data-alt-en"));
+        }
         try { localStorage.setItem("roban-lang", l); } catch (e) {}
       }
       (function () {
